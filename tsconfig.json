@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "outDir": "dist",
+    "declarationDir": "dist",
+    "paths": {
+      "~*": ["src/*"],
+      "~test-utils": ["src/lib/test-utils"]
+    },
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }],
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "sourceMap": true,
+    "target": "es5",
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["jest", "node"]
+  },
+  "exclude": [
+    "node_modules",
+    "src/lib/test-utils.tsx",
+    "build",
+    "dist",
+    "example",
+    "rollup.config.js"
+  ],
+  "include": ["**/*.ts", "**/*.tsx"]
+}

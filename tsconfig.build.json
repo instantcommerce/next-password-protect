@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "example",
+    "rollup.config.js",
+    "**/lib/test-utils.ts",
+    "**/__mocks__/*",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+  ],
+}

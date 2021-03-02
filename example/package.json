@@ -1,0 +1,109 @@
+{
+  "name": "next-password-protect-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "commit": "./node_modules/cz-customizable/standalone.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "lint": "eslint --ext .ts --ext .tsx ./src",
+    "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\""
+  },
+  "dependencies": {
+    "@reach/alert": "^0.7.4",
+    "@storyofams/react-helpers": "0.3.6",
+    "@storyofams/next-password-protect": "link:..",
+    "@styled-system/css": "^5.1.4",
+    "@styled-system/props": "^5.1.4",
+    "@svgr/webpack": "^5.0.1",
+    "axios": "^0.21.1",
+    "fontfaceobserver": "^2.1.0",
+    "next": "^10.0.2",
+    "next-seo": "^3.3.0",
+    "object-fit-images": "^3.2.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "6.14.1",
+    "react-lazyload": "^2.6.5",
+    "react-select": "^3.0.8",
+    "rebass": "^4.0.7",
+    "styled-components": "^5.1.1",
+    "styled-system": "^5.1.5",
+    "swr": "^0.1.16",
+    "yup": "^0.28.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/runtime-corejs2": "^7.9.2",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/preset-typescript": "^1.2.0",
+    "@storybook/react": "^5.2.8",
+    "@testing-library/jest-dom": "^5.0.2",
+    "@testing-library/react": "^9.4.0",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^13.1.6",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-select": "^3.0.10",
+    "@types/rebass": "4.0.7",
+    "@types/styled-components": "^5.1.1",
+    "@types/styled-system": "^5.1.9",
+    "@types/yup": "^0.26.27",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "babel-preset-react-app": "^9.1.0",
+    "cz-customizable": "git+https://github.com/storyofams/cz-customizable.git",
+    "eslint": "^7.6.0",
+    "eslint-config-ams": "git+https://github.com/storyofams/eslint-config-ams.git",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.5",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "fork-ts-checker-webpack-plugin": "^3.1.1",
+    "husky": "^4.0.6",
+    "jest": "^24.3.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^2.0.5",
+    "react-docgen-typescript-loader": "^3.6.0",
+    "react-select-event": "^4.1.2",
+    "ts-jest": "^25.0.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4"
+  },
+  "eslintConfig": {
+    "extends": [
+      "ams/web"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.+(js|jsx|ts|tsx)": [
+      "yarn lint --fix",
+      "git add"
+    ]
+  }
+}
