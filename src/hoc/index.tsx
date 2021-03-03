@@ -32,7 +32,7 @@ export const withPasswordProtect = (
       />
     );
 
-    ProtectedApp.getInitialProps = async (appContext: AppContext) => {
+    (ProtectedApp as any).getInitialProps = async (appContext: AppContext) => {
       const appProps = await (App.getInitialProps
         ? App.getInitialProps(appContext)
         : NextApp.getInitialProps(appContext));
@@ -40,8 +40,10 @@ export const withPasswordProtect = (
       const { req } = appContext.ctx;
 
       if (req) {
-        const compare = require('tsscmp');
-        const cookie = require('cookie');
+        // eslint-disable-next-line no-eval
+        const compare = eval("require('tsscmp')");
+        // eslint-disable-next-line no-eval
+        const cookie = eval("require('cookie')");
         const cookies = cookie.parse(req.headers.cookie);
         const cookieName = options?.cookieName || 'authorization';
 

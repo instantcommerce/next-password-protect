@@ -38,7 +38,7 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
       const { message } = await res.json();
 
       if (res.status === 200) {
-        router.replace(router.asPath);
+        router.reload();
       } else {
         setError(message);
         setBusy(false);
@@ -173,7 +173,7 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
             style={{
               background: '#F5F5F5',
               borderRadius: '4px',
-              padding: '10px 16px',
+              padding: '0 16px',
               fontSize: '18px',
               color: '#525252',
               border: 'none',
