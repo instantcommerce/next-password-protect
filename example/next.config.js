@@ -38,7 +38,9 @@ module.exports = {
 
     config.plugins.push(
       new webpack.DefinePlugin({
-        PASSWORD_PROTECT: JSON.stringify(process.env.ENVIRONMENT === 'staging'),
+        'process.env.PASSWORD_PROTECT': JSON.stringify(
+          process.env.ENVIRONMENT === 'staging',
+        ),
       }),
     );
 

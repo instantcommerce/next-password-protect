@@ -21,7 +21,7 @@ There are 3 steps to enabling password protect: setting a global variable, addin
 
 ### Step 1
 
-In order to be able to take advantage of dead code elimination, this library must be enabled using a global variable: `PASSWORD_PROTECT`.
+In order to be able to take advantage of dead code elimination, this library must be enabled using a global variable: `process.env.PASSWORD_PROTECT`.
 
 To set this variable, add the following to `next.config.js`:
 
@@ -32,7 +32,7 @@ module.exports = {
   webpack(config) {
     config.plugins.push(
       new webpack.DefinePlugin({
-        PASSWORD_PROTECT: JSON.stringify(
+        'process.env.PASSWORD_PROTECT': JSON.stringify(
           // Add any logic you want here,
           // returning `true` to enable password protect.
           process.env.ENVIRONMENT === 'staging',

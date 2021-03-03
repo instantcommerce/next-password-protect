@@ -18,8 +18,7 @@ export const withPasswordProtect = (
   password: string,
   options?: PasswordProtectHOCOptions,
 ) => {
-  // @ts-ignore
-  if (PASSWORD_PROTECT) {
+  if (process.env.PASSWORD_PROTECT) {
     const ProtectedApp = ({ Component, pageProps, ...props }: AppProps) => (
       <App
         Component={withAuth(
