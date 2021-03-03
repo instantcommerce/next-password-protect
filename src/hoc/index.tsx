@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import NextApp from 'next/app';
 import type { AppProps, AppContext } from 'next/app';
 
