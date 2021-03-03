@@ -11,6 +11,9 @@
   "files": [
     "/dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "commit": "./node_modules/cz-customizable/standalone.js",
     "test": "jest --coverage",
