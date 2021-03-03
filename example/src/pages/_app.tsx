@@ -20,12 +20,16 @@ class MyApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <DefaultSeo {...seo} />
+
         <Component {...pageProps} />
       </ThemeProvider>
     );
   }
 }
 
-export default withPasswordProtect(MyApp, process.env.STAGING_PASSWORD, {
-  apiPath: '/login',
-});
+export default process.env.PASSWORD_PROTECT
+  ? withPasswordProtect(MyApp, process.env.STAGING_PASSWORD, {
+      apiPath: '/login',
+      cookieName: 'authorization',
+    })
+  : App;

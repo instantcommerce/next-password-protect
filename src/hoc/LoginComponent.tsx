@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 
 interface LoginComponentProps {
   apiPath: string;
@@ -8,7 +7,6 @@ interface LoginComponentProps {
 export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
   const [isBusy, setBusy] = useState(false);
   const [error, setError] = useState('');
-  const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +36,7 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
       const { message } = await res.json();
 
       if (res.status === 200) {
-        router.reload();
+        window.location.reload();
       } else {
         setError(message);
         setBusy(false);
@@ -59,14 +57,27 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        maxWidth: '100vw',
         minHeight: '100vh',
         width: '100%',
-        padding: '32px 16px',
+        overflowX: 'hidden',
       }}
     >
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
+      <div
+        style={{
+          maxWidth: '100%',
+          display: 'flex',
+          flex: 1,
+          width: '100%',
+          padding: '32px 16px',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
             @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
             @font-face {
@@ -75,6 +86,10 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
               font-weight: 900;
               font-style: normal;
               font-display: swap;
+            }
+
+            body {
+              margin: 0;
             }
 
             #password-form * {
@@ -119,86 +134,87 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
               }
             }
           `,
-        }}
-      />
+          }}
+        />
 
-      <img
-        width="130"
-        height="85"
-        alt="Story of AMS logo"
-        src="https://storyofams.com/public/story-of-ams-logo-big.png"
-        srcSet="https://storyofams.com/public/story-of-ams-logo-big.png 1x, https://storyofams.com/public/story-of-ams-logo-big@2x.png 2x, https://storyofams.com/public/story-of-ams-logo-big@3x.png 3x"
-      />
-      <div
-        id="password-form"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
-          boxShadow: '0px 15px 40px rgba(26, 30, 43, 0.13)',
-          borderRadius: '8px',
-          width: '420px',
-          maxWidth: '100%',
-          marginTop: '40px',
-          marginBottom: '125px',
-        }}
-      >
-        <h1 style={{ margin: '0 0 24px', color: '#111' }}>Login</h1>
-        <form
-          onSubmit={onSubmit}
+        <img
+          width="130"
+          height="85"
+          alt="Story of AMS logo"
+          src="https://storyofams.com/public/story-of-ams-logo-big.png"
+          srcSet="https://storyofams.com/public/story-of-ams-logo-big.png 1x, https://storyofams.com/public/story-of-ams-logo-big@2x.png 2x, https://storyofams.com/public/story-of-ams-logo-big@3x.png 3x"
+        />
+        <div
+          id="password-form"
           style={{
             display: 'flex',
             flexDirection: 'column',
-            width: '100%',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+            boxShadow: '0px 15px 40px rgba(26, 30, 43, 0.13)',
+            borderRadius: '8px',
+            width: '420px',
+            maxWidth: '100%',
+            marginTop: '40px',
+            marginBottom: '125px',
           }}
         >
-          <label
-            htmlFor="password"
+          <h1 style={{ margin: '0 0 24px', color: '#111' }}>Login</h1>
+          <form
+            onSubmit={onSubmit}
             style={{
-              color: '#525252',
-              fontSize: '18px',
-              marginBottom: '8px',
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
             }}
           >
-            Password
-          </label>
-          <input
-            className={error ? 'invalid' : ''}
-            name="password"
-            type="password"
-            id="password"
-            placeholder="Enter password..."
-            required
-            style={{
-              background: '#F5F5F5',
-              borderRadius: '4px',
-              padding: '0 16px',
-              fontSize: '18px',
-              color: '#525252',
-              border: 'none',
-              height: '48px',
-            }}
-          />
+            <label
+              htmlFor="password"
+              style={{
+                color: '#525252',
+                fontSize: '18px',
+                marginBottom: '8px',
+              }}
+            >
+              Password
+            </label>
+            <input
+              className={error ? 'invalid' : ''}
+              name="password"
+              type="password"
+              id="password"
+              placeholder="Enter password..."
+              required
+              style={{
+                background: '#F5F5F5',
+                borderRadius: '4px',
+                padding: '0 16px',
+                fontSize: '18px',
+                color: '#525252',
+                border: 'none',
+                height: '48px',
+              }}
+            />
 
-          <button
-            type="submit"
-            disabled={isBusy}
-            style={{
-              appearance: 'none',
-              background: '#01EDBC',
-              borderRadius: '52px',
-              border: 'none',
-              padding: '12px 32px',
-              fontSize: '20px',
-              color: '#111',
-              marginTop: '32px',
-              cursor: 'pointer',
-            }}
-          >
-            {isBusy ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={isBusy}
+              style={{
+                appearance: 'none',
+                background: '#01EDBC',
+                borderRadius: '52px',
+                border: 'none',
+                padding: '12px 32px',
+                fontSize: '20px',
+                color: '#111',
+                marginTop: '32px',
+                cursor: 'pointer',
+              }}
+            >
+              {isBusy ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

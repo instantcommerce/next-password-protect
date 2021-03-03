@@ -1,6 +1,5 @@
 const path = require('path');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
-const webpack = require('webpack');
 
 const hasNextBabelLoader = (r) => {
   if (Array.isArray(r.use)) {
@@ -11,6 +10,9 @@ const hasNextBabelLoader = (r) => {
 };
 
 module.exports = {
+  env: {
+    PASSWORD_PROTECT: process.env.ENVIRONMENT === 'staging',
+  },
   webpack(config, options) {
     config.module.rules.forEach((rule) => {
       if (/(ts|tsx)/.test(String(rule.test)) && hasNextBabelLoader(rule)) {
@@ -35,14 +37,6 @@ module.exports = {
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
     };
-
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env.PASSWORD_PROTECT': JSON.stringify(
-          process.env.ENVIRONMENT === 'staging',
-        ),
-      }),
-    );
 
     return config;
   },

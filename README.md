@@ -33,27 +33,14 @@ There are 3 steps to enabling password protect: setting a global variable, addin
 
 ### Step 1
 
-In order to be able to take advantage of dead code elimination, this library must be enabled using a global variable: `process.env.PASSWORD_PROTECT`.
-
-To set this variable, add the following to `next.config.js`:
+In order to be able to take advantage of dead code elimination, it is recommended to add an environment variable like `process.env.PASSWORD_PROTECT`, and enable the library based on that variable. To set this variable, add the following to `next.config.js`:
 
 ```javascript
-const webpack = require('webpack');
-
 module.exports = {
-  webpack(config) {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env.PASSWORD_PROTECT': JSON.stringify(
-          // Add any logic you want here,
-          // returning `true` to enable password protect.
-          process.env.ENVIRONMENT === 'staging',
-        ),
-      }),
-    );
-
-    return config;
-  },
+  env: {
+    // Add any logic you want here, returning `true` to enable password protect.
+    PASSWORD_PROTECT: process.env.ENVIRONMENT === 'staging',
+  }
 });
 ```
 
@@ -78,11 +65,13 @@ Add the `withPasswordProtect` HOC to the default export of `App` in `pages/_app.
 import { withPasswordProtect } from "@storyofams/next-password-protect";
 
 // Before: export default App;
-export default withPasswordProtect(App, "YOUR_SECRET_PASSWORD", {
-  // Options go here (optional)
-  apiPath: "/login",
-  cookieName: "next-password-protect",
-});
+export default process.env.PASSWORD_PROTECT
+  ? withPasswordProtect(App, "YOUR_SECRET_PASSWORD", {
+    // Options go here (optional)
+    apiPath: "/login",
+    cookieName: "next-password-protect",
+  })
+  : App;
 ```
 
 **Note**: make sure to specify `apiPath` if the api route is not at `/login`!
@@ -116,3 +105,7 @@ Option | Description | Default value
 
 To change the default login component, a React component can be supplied to the `withPasswordProtect` HOC. In order for the library to function properly, make sure your login component has password input that is validated by the the api route.
 You can use `src/hoc/LoginComponent.tsx` as a starting point.
+
+## Caveats
+
+AMP is not yet supported, because the LoginComponent failed AMP validation. On an AMP page, nothing is rendered. This could be fixed by changing LoginComponent to valid AMP.
