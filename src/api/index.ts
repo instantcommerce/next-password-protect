@@ -7,6 +7,7 @@ import { setCookie } from './setCookie';
 interface PasswordProtectHandlerOptions {
   /* @default next-password-protect */
   cookieName?: string;
+  cookieSecure?: boolean;
 }
 
 export const passwordProtectHandler = (
@@ -33,7 +34,10 @@ export const passwordProtectHandler = (
         Buffer.from(password).toString('base64'),
         {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
+          secure:
+            options?.cookieSecure !== undefined
+              ? options?.cookieSecure
+              : process.env.NODE_ENV === 'production',
           path: '/',
         },
       );

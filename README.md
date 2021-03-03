@@ -86,6 +86,7 @@ The options object can contain any of the following options:
 Option | Description | Default value
 ------ | ----------- | -------------
 `cookieName`| The name of the authorization cookie | `'next-password-protect'`
+`cookieSecure`| Secure flag on the cookie | `process.env.NODE_ENV === 'production'`
 
 
 ### Next App HOC
