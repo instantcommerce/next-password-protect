@@ -7,6 +7,18 @@
 
 Password protect your Next.js deployments.
 
+## How it works
+
+This library adds a password prompt to your Next.js deployment. It consists of two main parts:
+1. A serverless API route that checks if a password is correct and sets a cookie in case it is. The value of the cookie is the password base64 encoded.
+2. A HOC ([Higher-Order Component](https://reactjs.org/docs/higher-order-components.html)) that wraps Next.js App and adds a `getInitialProps` check that validates if you have the authorization cookie with the correct password. If you do, then you can view the app normally; otherwise, you are presented with a password prompt.
+
+**Important**: Because this library adds `getInitialProps` to `App`, [Automatic Static Optimization](https://nextjs.org/docs/advanced-features/automatic-static-optimization) is disabled, and server side processing is required for every request.
+
+For this reason the recommended use case for this library is in a staging or preview environment. By taking advantage of webpack's `DefinePlugin`, we can make sure this library is only included in certain environments, so the production deployment can still enjoy all the performance benefits that Next.js brings.
+
+**This library is NOT meant as a secure password authentication wrapper, but rather as a way to keep nosey people out.**
+
 ## Installation
 
 ```sh
@@ -52,9 +64,9 @@ Add an api route with the `passwordProtectHandler` api function. You can name it
 ```javascript
 import { passwordProtectHandler } from "@storyofams/next-password-protect";
 
-export default passwordProtectHandler({
+export default passwordProtectHandler("YOUR_SECRET_PASSWORD", {
   // Options go here (optional)
-  cookieName: "authorization",
+  cookieName: "next-password-protect",
 });
 ```
 
@@ -66,11 +78,41 @@ Add the `withPasswordProtect` HOC to the default export of `App` in `pages/_app.
 import { withPasswordProtect } from "@storyofams/next-password-protect";
 
 // Before: export default App;
-export default withPasswordProtect(App, "password", {
+export default withPasswordProtect(App, "YOUR_SECRET_PASSWORD", {
   // Options go here (optional)
   apiPath: "/login",
-  cookieName: "authorization",
+  cookieName: "next-password-protect",
 });
 ```
 
-_Note_: make sure to specify `apiPath` if the api route is not at `/login`!
+**Note**: make sure to specify `apiPath` if the api route is not at `/login`!
+
+## API
+
+### API route handler
+```passwordProtectHandler(password: string, options)```
+
+The options object can contain any of the following options:
+
+Option | Description | Default value
+------ | ----------- | -------------
+`cookieName`| The name of the authorization cookie | `'next-password-protect'`
+
+
+### Next App HOC
+```withPasswordProtect(App: NextApp, password: string, options)```
+
+The options object can contain any of the following options:
+
+Option | Description | Default value
+------ | ----------- | -------------
+`apiPath`| Relative path of the api route handled by `passwordProtectHandler` | `'/login'`
+`cookieName`| The name of the authorization cookie | `'next-password-protect'`
+`loginComponent`| Supply your own React component to show as login prompt | `LoginComponent`
+
+## Advanced
+
+### Custom login component
+
+To change the default login component, a React component can be supplied to the `withPasswordProtect` HOC. In order for the library to function properly, make sure your login component has password input that is validated by the the api route.
+You can use `src/hoc/LoginComponent.tsx` as a starting point.

@@ -5,7 +5,7 @@ import { sendJson } from './sendJson';
 import { setCookie } from './setCookie';
 
 interface PasswordProtectHandlerOptions {
-  /* @default authorization */
+  /* @default next-password-protect */
   cookieName?: string;
 }
 
@@ -29,7 +29,7 @@ export const passwordProtectHandler = (
     if (compare(providedPassword, password)) {
       setCookie(
         res,
-        options?.cookieName || 'authorization',
+        options?.cookieName || 'next-password-protect',
         Buffer.from(password).toString('base64'),
         {
           httpOnly: true,

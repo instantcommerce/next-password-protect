@@ -8,11 +8,12 @@ import { withAuth } from './withAuth';
 interface PasswordProtectHOCOptions {
   /* @default /login */
   apiPath?: string;
-  /* @default authorization */
+  /* @default next-password-protect */
   cookieName?: string;
   loginComponent?: ReactNode;
 }
 
+// TODO: improve App typing
 export const withPasswordProtect = (
   App: any,
   password: string,
@@ -45,7 +46,7 @@ export const withPasswordProtect = (
         // eslint-disable-next-line no-eval
         const cookie = eval("require('cookie')");
         const cookies = cookie.parse(req.headers.cookie);
-        const cookieName = options?.cookieName || 'authorization';
+        const cookieName = options?.cookieName || 'next-password-protect';
 
         if (
           cookies?.[cookieName] &&
