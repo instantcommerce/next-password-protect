@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useAmp } from 'next/amp';
 
 export const withAuth = (
@@ -6,31 +6,10 @@ export const withAuth = (
   LoginComponent,
   pageProps,
   loginApiPath: string,
-  checkApiPath: string,
+  isAuthenticated: boolean,
 ) => {
   const Component = (props) => {
     const isAmp = useAmp();
-    const [isAuthenticated, setAuthenticated] = useState<undefined | boolean>(
-      undefined,
-    );
-
-    const checkIfLoggedIn = async () => {
-      try {
-        const res = await fetch(`/api${checkApiPath}`);
-
-        if (res.status === 200) {
-          setAuthenticated(true);
-        } else {
-          setAuthenticated(false);
-        }
-      } catch (e) {
-        setAuthenticated(false);
-      }
-    };
-
-    useEffect(() => {
-      checkIfLoggedIn();
-    }, []);
 
     if (isAuthenticated === undefined) {
       return null;
