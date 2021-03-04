@@ -10,12 +10,12 @@ Password protect your Next.js deployments.
 ## How it works
 
 This library adds a password prompt to your Next.js deployment. It consists of two main parts:
-1. A serverless API route that checks if a password is correct and sets a cookie in case it is. The value of the cookie is the password base64 encoded.
-2. A HOC ([Higher-Order Component](https://reactjs.org/docs/higher-order-components.html)) that wraps Next.js App and adds a `getInitialProps` check that validates if you have the authorization cookie with the correct password. If you do, then you can view the app normally; otherwise, you are presented with a password prompt.
+1. Two serverless API routes:
+   - A login route that checks if a password is correct and sets a cookie in case it is. The value of the cookie is the password base64 encoded.
+   - A check route that validates if you have the authorization cookie with the correct password.
+2. A HOC ([Higher-Order Component](https://reactjs.org/docs/higher-order-components.html)) that wraps Next.js App and adds a check that validates if you are logged in. If you do, then you can view the app normally; otherwise, you are presented with a password prompt.
 
-**Important**: Because this library adds `getInitialProps` to `App`, [Automatic Static Optimization](https://nextjs.org/docs/advanced-features/automatic-static-optimization) is disabled, and server side processing is required for every request.
-
-For this reason the recommended use case for this library is in a staging or preview environment. By taking advantage of webpack's `DefinePlugin`, we can make sure this library is only included in certain environments, so the production deployment can still enjoy all the performance benefits that Next.js brings.
+**Important**: The recommended use case for this library is in a staging or preview environment. By taking advantage of webpack's `DefinePlugin`, we can make sure this library is only included in certain environments, keeping the production bundle size small.
 
 **This library is NOT meant as a secure password authentication wrapper, but rather as a way to keep nosey people out.**
 
@@ -29,7 +29,7 @@ npm install @storyofams/next-password-protect
 
 ## Usage
 
-There are 3 steps to enabling password protect: setting a global variable, adding the API route, and adding the HOC to \_app.
+There are 3 steps to enabling password protect: setting a global variable, adding the API routes, and adding the HOC to \_app.
 
 ### Step 1
 
@@ -46,12 +46,21 @@ module.exports = {
 
 ### Step 2
 
-Add an api route with the `passwordProtectHandler` api function. You can name it anything, as long as you pass the name to `apiPath` in the next step. By default it expects `/login`.
+Add two api routes, one with the `loginHandler` and one with the `passwordCheckHandler` api function. You can name them anything, as long as you pass the names to `loginApiPath` and `checkApiPath` respectively, in the next step. By default it expects `/login` and `/passwordCheck`.
 
 ```javascript
-import { passwordProtectHandler } from "@storyofams/next-password-protect";
+import { loginHandler } from "@storyofams/next-password-protect";
 
-export default passwordProtectHandler("YOUR_SECRET_PASSWORD", {
+export default loginHandler("YOUR_SECRET_PASSWORD", {
+  // Options go here (optional)
+  cookieName: "next-password-protect",
+});
+```
+
+```javascript
+import { passwordCheckHandler } from "@storyofams/next-password-protect";
+
+export default passwordCheckHandler("YOUR_SECRET_PASSWORD", {
   // Options go here (optional)
   cookieName: "next-password-protect",
 });
@@ -66,20 +75,20 @@ import { withPasswordProtect } from "@storyofams/next-password-protect";
 
 // Before: export default App;
 export default process.env.PASSWORD_PROTECT
-  ? withPasswordProtect(App, "YOUR_SECRET_PASSWORD", {
+  ? withPasswordProtect(App, {
     // Options go here (optional)
-    apiPath: "/login",
+    loginApiPath: "/login",
     cookieName: "next-password-protect",
   })
   : App;
 ```
 
-**Note**: make sure to specify `apiPath` if the api route is not at `/login`!
+**Note**: make sure to specify `loginApiPath` and/or `loginApiPath` if the api route(s) are not default.
 
 ## API
 
-### API route handler
-```passwordProtectHandler(password: string, options)```
+### API routes handlers
+```loginHandler(password: string, options)```
 
 The options object can contain any of the following options:
 
@@ -88,16 +97,25 @@ Option | Description | Default value
 `cookieName`| The name of the authorization cookie | `'next-password-protect'`
 `cookieSecure`| Secure flag on the cookie | `process.env.NODE_ENV === 'production'`
 
-
-### Next App HOC
-```withPasswordProtect(App: NextApp, password: string, options)```
+```passwordCheckHandler(password: string, options)```
 
 The options object can contain any of the following options:
 
 Option | Description | Default value
 ------ | ----------- | -------------
-`apiPath`| Relative path of the api route handled by `passwordProtectHandler` | `'/login'`
 `cookieName`| The name of the authorization cookie | `'next-password-protect'`
+
+
+### Next App HOC
+```withPasswordProtect(App: NextApp, options)```
+
+The options object can contain any of the following options:
+
+Option | Description | Default value
+------ | ----------- | -------------
+`cookieName`| The name of the authorization cookie | `'next-password-protect'`
+`checkApiPath`| Relative path of the api route handled by `passwordCheckHandler` | `'/passwordCheck'`
+`loginApiPath`| Relative path of the api route handled by `loginHandler` | `'/login'`
 `loginComponent`| Supply your own React component to show as login prompt | `LoginComponent`
 
 ## Advanced

@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "cookie": "^0.4.1",
+    "hoist-non-react-statics": "^3.3.2",
     "tsscmp": "^1.0.6"
   },
   "devDependencies": {
