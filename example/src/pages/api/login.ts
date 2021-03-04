@@ -1,5 +1,5 @@
-import { passwordProtectHandler } from '@storyofams/next-password-protect';
+import { loginHandler } from '@storyofams/next-password-protect';
 
-export default passwordProtectHandler(process.env.STAGING_PASSWORD, {
+export default loginHandler(process.env.STAGING_PASSWORD, {
   cookieName: 'authorization',
 });

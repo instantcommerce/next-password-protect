@@ -26,6 +26,9 @@ export const withPasswordProtect = (
       try {
         const res = await fetch(
           `/api${options?.checkApiPath || '/passwordCheck'}`,
+          {
+            credentials: 'include',
+          },
         );
 
         if (res.status === 200) {

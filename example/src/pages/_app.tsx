@@ -27,9 +27,4 @@ class MyApp extends App {
   }
 }
 
-export default process.env.PASSWORD_PROTECT
-  ? withPasswordProtect(MyApp, process.env.STAGING_PASSWORD, {
-      apiPath: '/login',
-      cookieName: 'authorization',
-    })
-  : App;
+export default process.env.PASSWORD_PROTECT ? withPasswordProtect(MyApp) : App;
