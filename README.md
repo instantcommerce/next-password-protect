@@ -95,6 +95,7 @@ The options object can contain any of the following options:
 Option | Description | Default value
 ------ | ----------- | -------------
 `cookieName`| The name of the authorization cookie | `'next-password-protect'`
+`cookieSameSite`| SameSite cookie attribute | `false`
 `cookieSecure`| Secure flag on the cookie | `process.env.NODE_ENV === 'production'`
 
 ```passwordCheckHandler(password: string, options)```

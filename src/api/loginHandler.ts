@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import compare from 'tsscmp';
+import compare from 'safe-compare';
 
 import { sendJson } from './sendJson';
 import { setCookie } from './setCookie';
@@ -7,6 +7,7 @@ import { setCookie } from './setCookie';
 interface PasswordProtectHandlerOptions {
   /* @default next-password-protect */
   cookieName?: string;
+  cookieSameSite?: boolean | 'lax' | 'none' | 'strict';
   cookieSecure?: boolean;
 }
 
@@ -34,6 +35,7 @@ export const loginHandler = (
         Buffer.from(password).toString('base64'),
         {
           httpOnly: true,
+          sameSite: options?.cookieSameSite || false,
           secure:
             options?.cookieSecure !== undefined
               ? options?.cookieSecure

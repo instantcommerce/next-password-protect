@@ -35,8 +35,7 @@
   },
   "dependencies": {
     "cookie": "^0.4.1",
-    "hoist-non-react-statics": "^3.3.2",
-    "tsscmp": "^1.0.6"
+    "safe-compare": "^1.1.4"
   },
   "devDependencies": {
     "@babel/cli": "7.12.13",

@@ -1,6 +1,6 @@
 import cookie from 'cookie';
 import { Request, Response } from 'express';
-import compare from 'tsscmp';
+import compare from 'safe-compare';
 
 import { sendJson } from './sendJson';
 
