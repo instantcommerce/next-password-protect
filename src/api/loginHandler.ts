@@ -5,6 +5,7 @@ import { sendJson } from './sendJson';
 import { setCookie } from './setCookie';
 
 interface PasswordProtectHandlerOptions {
+  cookieMaxAge?: number;
   /* @default next-password-protect */
   cookieName?: string;
   cookieSameSite?: boolean | 'lax' | 'none' | 'strict';
@@ -41,6 +42,11 @@ export const loginHandler = (
               ? options?.cookieSecure
               : process.env.NODE_ENV === 'production',
           path: '/',
+          ...(options?.cookieMaxAge
+            ? {
+                maxAge: options?.cookieMaxAge,
+              }
+            : {}),
         },
       );
 
