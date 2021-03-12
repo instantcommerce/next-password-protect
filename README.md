@@ -3,9 +3,12 @@
     <img src="https://storyofams.com/public/story-of-ams-logo-small@3x.png" alt="Story of AMS" width="120">
   </a>
   <h1 align="center">@storyofams/next-password-protect</h1>
+  <p align="center">Password protect your Next.js deployments.</p>
 </p>
 
-Password protect your Next.js deployments.
+---
+
+[![Preview](https://user-images.githubusercontent.com/19343479/110955791-3da56480-834a-11eb-9e7c-6b17621ba346.png)](https://user-images.githubusercontent.com/19343479/110955308-c079ef80-8349-11eb-926e-12d1fce1d32f.mov)
 
 ## How it works
 
