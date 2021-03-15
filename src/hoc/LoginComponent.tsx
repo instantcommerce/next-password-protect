@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 interface LoginComponentProps {
-  apiPath: string;
+  apiUrl?: string;
 }
 
-export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
+export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
   const [isBusy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -26,7 +26,7 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
 
       const formData = new FormData(form);
 
-      const res = await fetch(`/api${apiPath}`, {
+      const res = await fetch(apiUrl || `/api/login`, {
         method: 'post',
         credentials: 'include',
         body: JSON.stringify({ password: formData.get('password') }),
@@ -116,6 +116,12 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
               animation: shake .4s linear;
             }
 
+            #password-form .error {
+              color: #DD4A4A;
+              margin-top: 12px;
+              font-size: 18px;
+            }
+
             @keyframes shake {
               8%, 41% {
                 transform: translateX(-10px);
@@ -161,6 +167,7 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
         >
           <h1 style={{ margin: '0 0 24px', color: '#111' }}>Login</h1>
           <form
+            data-testid="form"
             onSubmit={onSubmit}
             style={{
               display: 'flex',
@@ -195,6 +202,11 @@ export const LoginComponent = ({ apiPath }: LoginComponentProps) => {
                 height: '48px',
               }}
             />
+            {!!error && (
+              <div className="error" data-testid="error">
+                {error}
+              </div>
+            )}
 
             <button
               type="submit"
