@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import { createMocks } from 'node-mocks-http';
 
-import { loginHandler } from '~api/loginHandler';
+import { loginHandler } from '../loginHandler';
 
 describe('[api] loginHandler', () => {
   it('should set cookie on correct password', async () => {

@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import { createMocks } from 'node-mocks-http';
-import { passwordCheckHandler } from '~api/passwordCheckHandler';
+
+import { passwordCheckHandler } from '../passwordCheckHandler';
 
 describe('[api] passwordCheckHandler', () => {
   it('should succeed with correct cookie', async () => {

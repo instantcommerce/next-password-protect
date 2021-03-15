@@ -5,8 +5,8 @@ export const withAuth = (
   WrappedComponent,
   LoginComponent,
   pageProps,
-  loginApiPath: string,
   isAuthenticated: boolean,
+  loginApiPath?: string,
 ) => {
   const Component = (props) => {
     const isAmp = useAmp();

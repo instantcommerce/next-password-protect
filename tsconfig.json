@@ -24,7 +24,7 @@
     "sourceMap": true,
     "target": "es5",
     "typeRoots": ["./node_modules/@types"],
-    "types": ["jest", "node"]
+    "types": ["jest", "node", "@testing-library/jest-dom"]
   },
   "exclude": [
     "node_modules",
