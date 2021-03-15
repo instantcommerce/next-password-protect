@@ -3,6 +3,20 @@
     <img src="https://storyofams.com/public/story-of-ams-logo-small@3x.png" alt="Story of AMS" width="120">
   </a>
   <h1 align="center">@storyofams/next-password-protect</h1>
+  <p align="center">
+    <a aria-label="releases" href="https://GitHub.com/storyofams/next-password-protect/releases/" target="_blank">
+      <img src="https://github.com/storyofams/next-password-protect/workflows/Release/badge.svg">
+    </a>
+    <a aria-label="npm" href="https://www.npmjs.com/package/@storyofams/next-password-protect" target="_blank">
+      <img src="https://img.shields.io/npm/v/@storyofams/next-password-protect">
+    </a>
+    <a aria-label="codecov" href="https://codecov.io/gh/storyofams/next-password-protect" target="_blank">
+      <img src="https://codecov.io/gh/storyofams/next-password-protect/branch/master/graph/badge.svg?token=ZV0YT4HU5H">
+    </a>
+    <a aria-label="stars" href="https://github.com/storyofams/next-password-protect/stargazers/" target="_blank">
+      <img src="https://img.shields.io/github/stars/storyofams/next-password-protect.svg?style=social&label=Star&maxAge=86400" />
+    </a>
+  </p>
   <p align="center">Password protect your Next.js deployments.</p>
 </p>
 
