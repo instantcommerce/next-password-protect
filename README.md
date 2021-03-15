@@ -17,7 +17,7 @@
       <img src="https://img.shields.io/github/stars/storyofams/next-password-protect.svg?style=social&label=Star&maxAge=86400" />
     </a>
   </p>
-  <p align="center">Password protect your Next.js deployments.</p>
+  <p align="center">Password protect your Next.js deployments. <a href="http://next-password-protect.vercel.app/" target="_blank">View demo</a> (Password is <b>secret</b>)</p>
 </p>
 
 ---
