@@ -1,12 +1,14 @@
 import React from 'react';
 import { useAmp } from 'next/amp';
 
+import { LoginComponentProps } from './LoginComponent';
+
 export const withAuth = (
   WrappedComponent,
   LoginComponent,
   pageProps,
   isAuthenticated: boolean,
-  loginApiPath?: string,
+  loginComponentProps: LoginComponentProps,
 ) => {
   const Component = (props) => {
     const isAmp = useAmp();
@@ -24,7 +26,7 @@ export const withAuth = (
       return null;
     }
 
-    return <LoginComponent apiPath={loginApiPath} />;
+    return <LoginComponent {...loginComponentProps} />;
   };
 
   return Component;

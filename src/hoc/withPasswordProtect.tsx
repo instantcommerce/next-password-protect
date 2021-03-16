@@ -1,7 +1,10 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
 
-import { LoginComponent as DefaultLoginComponent } from './LoginComponent';
+import {
+  LoginComponent as DefaultLoginComponent,
+  LoginComponentProps,
+} from './LoginComponent';
 import { withAuth } from './withAuth';
 
 interface PasswordProtectHOCOptions {
@@ -10,6 +13,7 @@ interface PasswordProtectHOCOptions {
   /* @default /api/login */
   loginApiUrl?: string;
   loginComponent?: ReactNode;
+  loginComponentProps?: Omit<LoginComponentProps, 'apiUrl'>;
 }
 
 /// TODO: improve App typing
@@ -49,7 +53,10 @@ export const withPasswordProtect = (
           options?.loginComponent || DefaultLoginComponent,
           pageProps,
           isAuthenticated,
-          options?.loginApiUrl,
+          {
+            apiUrl: options?.loginApiUrl,
+            ...(options?.loginComponentProps || {}),
+          },
         )}
         pageProps={pageProps}
         {...props}

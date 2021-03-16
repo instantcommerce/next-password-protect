@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 
-interface LoginComponentProps {
+export interface LoginComponentProps {
   apiUrl?: string;
+  backUrl?: string;
+  /* @default #01EDBC */
+  buttonBackgroundColor?: string;
+  /* @default #111 */
+  buttonColor?: string;
+  logo?: string;
 }
 
-export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
+export const LoginComponent = ({
+  apiUrl,
+  backUrl,
+  buttonBackgroundColor,
+  buttonColor,
+  logo,
+}: LoginComponentProps) => {
   const [isBusy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -49,6 +61,16 @@ export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
     return false;
   };
 
+  const image = !!logo && (
+    <img
+      width="130"
+      height="auto"
+      src={logo}
+      alt="Logo"
+      style={{ marginBottom: '40px' }}
+    />
+  );
+
   return (
     <div
       style={{
@@ -90,6 +112,22 @@ export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
 
             body {
               margin: 0;
+            }
+
+            * {
+              box-sizing: border-box;
+            }
+
+            .link {
+              font-family: 'Karla', sans-serif;
+              font-style: normal;
+              text-decoration: none;
+              color: #666;
+              transition: color 0.2s ease-out;
+            }
+
+            .link:hover, .link:focus {
+              color: #111;
             }
 
             #password-form * {
@@ -143,13 +181,7 @@ export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
           }}
         />
 
-        <img
-          width="130"
-          height="85"
-          alt="Story of AMS logo"
-          src="https://storyofams.com/public/story-of-ams-logo-big.png"
-          srcSet="https://storyofams.com/public/story-of-ams-logo-big.png 1x, https://storyofams.com/public/story-of-ams-logo-big@2x.png 2x, https://storyofams.com/public/story-of-ams-logo-big@3x.png 3x"
-        />
+        {!!image && <>{backUrl ? <a href={backUrl}>{image}</a> : image}</>}
         <div
           id="password-form"
           style={{
@@ -161,7 +193,6 @@ export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
             borderRadius: '8px',
             width: '420px',
             maxWidth: '100%',
-            marginTop: '40px',
             marginBottom: '125px',
           }}
         >
@@ -213,12 +244,12 @@ export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
               disabled={isBusy}
               style={{
                 appearance: 'none',
-                background: '#01EDBC',
+                background: buttonBackgroundColor || '#01EDBC',
                 borderRadius: '52px',
                 border: 'none',
                 padding: '12px 32px',
                 fontSize: '20px',
-                color: '#111',
+                color: buttonColor || '#111',
                 marginTop: '32px',
                 cursor: 'pointer',
               }}
@@ -227,6 +258,11 @@ export const LoginComponent = ({ apiUrl }: LoginComponentProps) => {
             </button>
           </form>
         </div>
+        {!!backUrl && (
+          <a href={backUrl} className="link">
+            ← Back to main website
+          </a>
+        )}
       </div>
     </div>
   );
