@@ -27,4 +27,10 @@ class MyApp extends App {
   }
 }
 
-export default process.env.PASSWORD_PROTECT ? withPasswordProtect(MyApp) : App;
+export default process.env.PASSWORD_PROTECT
+  ? withPasswordProtect(MyApp, {
+      loginComponentProps: {
+        logo: 'https://storyofams.com/public/story-of-ams-logo-big@2x.png',
+      },
+    })
+  : App;

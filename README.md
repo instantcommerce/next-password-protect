@@ -111,6 +111,7 @@ The options object can contain any of the following options:
 
 Option | Description | Default value
 ------ | ----------- | -------------
+`cookieMaxAge`| Cookie Max-Age attribute | `undefined`
 `cookieName`| The name of the authorization cookie | `'next-password-protect'`
 `cookieSameSite`| SameSite cookie attribute | `false`
 `cookieSecure`| Secure flag on the cookie | `process.env.NODE_ENV === 'production'`
@@ -132,9 +133,19 @@ The options object can contain any of the following options:
 Option | Description | Default value
 ------ | ----------- | -------------
 `cookieName`| The name of the authorization cookie | `'next-password-protect'`
-`checkApiPath`| Relative path of the api route handled by `passwordCheckHandler` | `'/passwordCheck'`
-`loginApiPath`| Relative path of the api route handled by `loginHandler` | `'/login'`
+`checkApiUrl`| Relative path of the api route handled by `passwordCheckHandler` | `'/api/passwordCheck'`
+`loginApiUrl`| Relative path of the api route handled by `loginHandler` | `'/api/login'`
 `loginComponent`| Supply your own React component to show as login prompt | `LoginComponent`
+`loginComponentProps`| Properties object to customize the login prompt, without overriding the entire component (see below) | `{}`
+
+The `loginComponentProps` object can contain any of the following options:
+
+Option | Description | Default value
+------ | ----------- | -------------
+`backUrl`| Show a link with this URL to go back to main website | `undefined`
+`buttonBackgroundColor`| Login button background color | `'#01EDBC'`
+`buttonColor`| Login button color | `'#111'`
+`logo` | Show a logo above the prompt (img src) | `undefined`
 
 ## Advanced
 

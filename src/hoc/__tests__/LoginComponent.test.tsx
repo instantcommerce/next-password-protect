@@ -110,4 +110,27 @@ describe('[hoc] LoginComponent', () => {
 
     expect(fetchMock).toBeCalledTimes(1);
   });
+
+  it('should show logo if set', async () => {
+    act(() => {
+      render(<LoginComponent logo="/image-src" />);
+    });
+
+    expect(screen.getByAltText('Logo')).toHaveAttribute('src', '/image-src');
+  });
+
+  it('should show back link if set', async () => {
+    act(() => {
+      render(<LoginComponent logo="/image-src" backUrl="https://google.com" />);
+    });
+
+    expect(screen.getByText('← Back to main website')).toHaveAttribute(
+      'href',
+      'https://google.com',
+    );
+    expect(screen.getByAltText('Logo').closest('a')).toHaveAttribute(
+      'href',
+      'https://google.com',
+    );
+  });
 });
