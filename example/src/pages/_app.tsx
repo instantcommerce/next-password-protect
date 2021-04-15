@@ -30,6 +30,7 @@ class MyApp extends App {
 export default process.env.PASSWORD_PROTECT
   ? withPasswordProtect(MyApp, {
       loginComponentProps: {
+        backUrl: 'https://github.com/storyofams/next-password-protect',
         logo: 'https://storyofams.com/public/story-of-ams-logo-big@2x.png',
       },
     })
