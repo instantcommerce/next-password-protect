@@ -252,6 +252,7 @@ export const LoginComponent = ({
                 color: buttonColor || '#111',
                 marginTop: '32px',
                 cursor: 'pointer',
+                textAlign: 'center',
               }}
             >
               {isBusy ? 'Logging in...' : 'Login'}

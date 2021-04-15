@@ -1,18 +1,18 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ElementType, useEffect, useState } from 'react';
+import { useAmp } from 'next/amp';
 import type { AppProps } from 'next/app';
 
 import {
   LoginComponent as DefaultLoginComponent,
   LoginComponentProps,
 } from './LoginComponent';
-import { withAuth } from './withAuth';
 
 interface PasswordProtectHOCOptions {
   /* @default /api/passwordCheck */
   checkApiUrl?: string;
   /* @default /api/login */
   loginApiUrl?: string;
-  loginComponent?: ReactNode;
+  loginComponent?: ElementType;
   loginComponentProps?: Omit<LoginComponentProps, 'apiUrl'>;
 }
 
@@ -22,6 +22,7 @@ export const withPasswordProtect = (
   options?: PasswordProtectHOCOptions,
 ) => {
   const ProtectedApp = ({ Component, pageProps, ...props }: AppProps) => {
+    const isAmp = useAmp();
     const [isAuthenticated, setAuthenticated] = useState<undefined | boolean>(
       undefined,
     );
@@ -46,20 +47,26 @@ export const withPasswordProtect = (
       checkIfLoggedIn();
     }, []);
 
+    if (isAuthenticated === undefined) {
+      return null;
+    }
+
+    if (isAuthenticated) {
+      return <App Component={Component} pageProps={pageProps} {...props} />;
+    }
+
+    // AMP is not yet supported
+    if (isAmp) {
+      return null;
+    }
+
+    const LoginComponent: ElementType =
+      options?.loginComponent || DefaultLoginComponent;
+
     return (
-      <App
-        Component={withAuth(
-          Component,
-          options?.loginComponent || DefaultLoginComponent,
-          pageProps,
-          isAuthenticated,
-          {
-            apiUrl: options?.loginApiUrl,
-            ...(options?.loginComponentProps || {}),
-          },
-        )}
-        pageProps={pageProps}
-        {...props}
+      <LoginComponent
+        apiUrl={options?.loginApiUrl}
+        {...(options?.loginComponentProps || {})}
       />
     );
   };
