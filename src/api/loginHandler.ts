@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import compare from 'safe-compare';
 
 import { sendJson } from './sendJson';
@@ -33,7 +34,11 @@ export const loginHandler = (
       setCookie(
         res,
         options?.cookieName || 'next-password-protect',
-        Buffer.from(password).toString('base64'),
+        /* NOTE: It's not usual to use the password as JWT secret, but since you already
+         * have access to the environment when you know the password, in this specific
+         * use case it doesn't add any value for an intruder if the secret is known.
+         */
+        jwt.sign({}, password),
         {
           httpOnly: true,
           sameSite: options?.cookieSameSite || false,

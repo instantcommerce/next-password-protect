@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import jwt from 'jsonwebtoken';
 import { createMocks } from 'node-mocks-http';
 
 import { passwordCheckHandler } from '../passwordCheckHandler';
@@ -9,7 +10,10 @@ describe('[api] passwordCheckHandler', () => {
       {
         method: 'GET',
         headers: {
-          cookie: 'next-password-protect=cGFzc3dvcmQ%3D; Path=/; HttpOnly',
+          cookie: `next-password-protect=${jwt.sign(
+            {},
+            'password',
+          )}; Path=/; HttpOnly`,
         },
       },
       { eventEmitter: EventEmitter },
@@ -42,12 +46,15 @@ describe('[api] passwordCheckHandler', () => {
     jest.restoreAllMocks();
   });
 
-  it('should fail with incorrect cookie', async () => {
+  it('should fail with incorrect JWT', async () => {
     const { req, res } = createMocks(
       {
         method: 'GET',
         headers: {
-          cookie: 'next-password-protect=incorrect; Path=/; HttpOnly',
+          cookie: `next-password-protect=${jwt.sign(
+            {},
+            'incorrect',
+          )}; Path=/; HttpOnly`,
         },
       },
       { eventEmitter: EventEmitter },
@@ -78,7 +85,10 @@ describe('[api] passwordCheckHandler', () => {
       {
         method: 'GET',
         headers: {
-          cookie: 'next-password-protect=cGFzc3dvcmQ%3D; Path=/; HttpOnly',
+          cookie: `next-password-protect=${jwt.sign(
+            {},
+            'password',
+          )}; Path=/; HttpOnly`,
         },
       },
       { eventEmitter: EventEmitter },
