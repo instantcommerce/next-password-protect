@@ -13,10 +13,11 @@ describe('[api] loginHandler', () => {
     await loginHandler('password')(req as any, res as any);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(res._getHeaders()).toHaveProperty(
-      'set-cookie',
-      'next-password-protect=cGFzc3dvcmQ%3D; Path=/; HttpOnly',
-    );
+    expect(res._getHeaders()).toMatchObject({
+      'set-cookie': expect.stringMatching(
+        /^next-password-protect=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\..+\..+; Path=\/; HttpOnly$/,
+      ),
+    });
 
     jest.restoreAllMocks();
   });
@@ -36,12 +37,17 @@ describe('[api] loginHandler', () => {
     );
 
     expect(res._getStatusCode()).toBe(200);
-    expect(res._getHeaders()).toHaveProperty(
-      'set-cookie',
-      `next-password-protect=cGFzc3dvcmQ%3D; Max-Age=${
-        maxAge / 1000
-      }; Path=/; Expires=${new Date(now + maxAge).toUTCString()}; HttpOnly`,
-    );
+    expect(res._getHeaders()).toMatchObject({
+      'set-cookie': expect.stringMatching(
+        new RegExp(
+          `^next-password-protect=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\\..+\\..+; Max-Age=${
+            maxAge / 1000
+          }; Path=\\/; Expires=${new Date(
+            now + maxAge,
+          ).toUTCString()}; HttpOnly$`,
+        ),
+      ),
+    });
 
     jest.restoreAllMocks();
   });
@@ -58,10 +64,11 @@ describe('[api] loginHandler', () => {
     );
 
     expect(res._getStatusCode()).toBe(200);
-    expect(res._getHeaders()).toHaveProperty(
-      'set-cookie',
-      `next-password-protect=cGFzc3dvcmQ%3D; Path=/; HttpOnly; Secure`,
-    );
+    expect(res._getHeaders()).toMatchObject({
+      'set-cookie': expect.stringMatching(
+        /^next-password-protect=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\..+\..+; Path=\/; HttpOnly; Secure$/,
+      ),
+    });
 
     jest.restoreAllMocks();
   });

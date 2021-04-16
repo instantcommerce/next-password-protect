@@ -1,6 +1,6 @@
 import cookie from 'cookie';
 import { Request, Response } from 'express';
-import compare from 'safe-compare';
+import jwt from 'jsonwebtoken';
 
 import { sendJson } from './sendJson';
 
@@ -27,17 +27,23 @@ export const passwordCheckHandler = (
       const cookies = cookie.parse(req.headers.cookie);
       const cookieName = options?.cookieName || 'next-password-protect';
 
-      if (
-        cookies?.[cookieName] &&
-        compare(cookies?.[cookieName], Buffer.from(password).toString('base64'))
-      ) {
-        sendJson(res, 200);
-        return;
-      }
+      /* NOTE: It's not usual to use the password as JWT secret, but since you already
+       * have access to the environment when you know the password, in this specific
+       * use case it doesn't add any value for an intruder if the secret is known.
+       */
+      jwt.verify(cookies?.[cookieName], password);
+
+      sendJson(res, 200);
+      return;
     }
 
     sendJson(res, 401);
   } catch (err) {
+    if (err.name === 'JsonWebTokenError') {
+      sendJson(res, 401);
+      return;
+    }
+
     sendJson(res, 500, { message: err?.message || 'An error has occured.' });
   }
 };
