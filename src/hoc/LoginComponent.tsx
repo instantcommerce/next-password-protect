@@ -193,7 +193,7 @@ export const LoginComponent = ({
             borderRadius: '8px',
             width: '420px',
             maxWidth: '100%',
-            marginBottom: '125px',
+            marginBottom: '48px',
           }}
         >
           <h1 style={{ margin: '0 0 24px', color: '#111' }}>Login</h1>
