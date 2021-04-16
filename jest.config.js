@@ -20,4 +20,5 @@ module.exports = {
     '@testing-library/jest-dom/extend-expect',
     './jest.setup.js',
   ],
+  collectCoverageFrom: ['src/**/*.{ts,tsx}'],
 };

@@ -22,7 +22,7 @@
 
 ---
 
-[![Preview](https://user-images.githubusercontent.com/19343479/110955791-3da56480-834a-11eb-9e7c-6b17621ba346.png)](https://user-images.githubusercontent.com/19343479/110955308-c079ef80-8349-11eb-926e-12d1fce1d32f.mov)
+[![Preview](https://user-images.githubusercontent.com/19343479/110955791-3da56480-834a-11eb-9e7c-6b17621ba346.png)](https://user-images.githubusercontent.com/19343479/114987129-1a179180-9e95-11eb-9508-6c514f671ca9.mov)
 
 ## How it works
 
