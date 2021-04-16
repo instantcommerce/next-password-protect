@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from '@jest/types';
+
+export default {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   transform: {
@@ -21,4 +23,4 @@ module.exports = {
     './jest.setup.js',
   ],
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
-};
+} as Config.InitialOptions;
