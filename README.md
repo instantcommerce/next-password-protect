@@ -28,8 +28,8 @@
 
 This library adds a password prompt to your Next.js deployment. It consists of two main parts:
 1. Two serverless API routes:
-   - A login route that checks if a password is correct and sets a cookie in case it is. The value of the cookie is the password base64 encoded.
-   - A check route that validates if you have the authorization cookie with the correct password.
+   - A login route that checks if a password is correct and sets a cookie with a JWT in case it is.
+   - A check route that validates if you have the authorization cookie with a valid JWT.
 2. A HOC ([Higher-Order Component](https://reactjs.org/docs/higher-order-components.html)) that wraps Next.js App and adds a check that validates if you are logged in. If you do, then you can view the app normally; otherwise, you are presented with a password prompt.
 
 **Important**: The recommended use case for this library is in a staging or preview environment. By taking advantage of webpack's `DefinePlugin`, we can make sure this library is only included in certain environments, keeping the production bundle size small.
