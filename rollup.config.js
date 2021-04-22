@@ -9,8 +9,6 @@ import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import ttypescript from 'ttypescript';
 
-import pkg from './package.json';
-
 const extensions = ['.tsx', '.ts'];
 
 export default {
@@ -18,18 +16,19 @@ export default {
   input: ['./src/index.ts'],
   output: [
     {
-      file: pkg.main,
+      dir: 'dist/cjs',
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
     },
     {
-      file: pkg.module,
+      dir: 'dist/esm',
       format: 'es',
       exports: 'named',
       sourcemap: true,
     },
   ],
+  preserveModules: true,
   plugins: [
     clear({
       targets: ['dist'],

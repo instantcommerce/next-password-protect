@@ -3,10 +3,10 @@
   "description": "Password protect your Next.js deployments.",
   "version": "0.0.0-development",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/src/index.js",
+  "module": "dist/esm/src/index.js",
+  "jsnext:main": "dist/esm/src/index.js",
+  "types": "dist/esm/index.d.ts",
   "sideEffects": false,
   "files": [
     "/dist"
