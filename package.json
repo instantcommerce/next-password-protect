@@ -29,7 +29,7 @@
     "semantic-release": "semantic-release"
   },
   "peerDependencies": {
-    "next": "10.x",
+    "next": "10.x | 11.x",
     "react": "16.x | 17.x",
     "react-dom": "16.x | 17.x"
   },
