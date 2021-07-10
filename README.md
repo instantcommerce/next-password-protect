@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://storyofams.com/" target="_blank" align="center">
-    <img src="https://storyofams.com/public/story-of-ams-logo-small@3x.png" alt="Story of AMS" width="120">
+  <a aria-label="Story of AMS logo" href="https://storyofams.com/" target="_blank" align="center">
+    <img src="https://avatars.githubusercontent.com/u/19343504" alt="Story of AMS" width="100">
   </a>
   <h1 align="center">@storyofams/next-password-protect</h1>
   <p align="center">
