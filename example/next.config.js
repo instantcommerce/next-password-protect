@@ -13,6 +13,11 @@ module.exports = {
   env: {
     PASSWORD_PROTECT: process.env.ENVIRONMENT === 'staging',
   },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
   webpack(config, options) {
     config.module.rules.forEach((rule) => {
       if (/(ts|tsx)/.test(String(rule.test)) && hasNextBabelLoader(rule)) {
