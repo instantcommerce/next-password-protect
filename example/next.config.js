@@ -1,27 +1,19 @@
 const path = require('path');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
-const hasNextBabelLoader = (r) => {
-  if (Array.isArray(r.use)) {
-    return r.use.find((l) => l && l.loader === 'next-babel-loader');
-  }
-
-  return r.use && r.use.loader === 'next-babel-loader';
-};
-
 module.exports = {
   env: {
     PASSWORD_PROTECT: process.env.ENVIRONMENT === 'staging',
   },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  experimental: {
+    externalDir: true,
+  },
   webpack(config, options) {
-    config.module.rules.forEach((rule) => {
-      if (/(ts|tsx)/.test(String(rule.test)) && hasNextBabelLoader(rule)) {
-        rule.include = [...rule.include, path.join(__dirname, '..', 'src')];
-
-        return rule;
-      }
-    });
-
     config.module.rules.push({
       test: /\.svg$/,
       use: [{ loader: '@svgr/webpack', options: { icon: true, svgo: false } }],
