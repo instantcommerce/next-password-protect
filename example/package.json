@@ -21,7 +21,7 @@
     "@svgr/webpack": "^5.0.1",
     "axios": "^0.21.1",
     "fontfaceobserver": "^2.1.0",
-    "next": "^10.0.2",
+    "next": "^11.1.0",
     "next-seo": "^3.3.0",
     "object-fit-images": "^3.2.4",
     "react": "^17.0.1",
