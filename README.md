@@ -63,7 +63,7 @@ module.exports = {
 
 ### Step 2
 
-Add two api routes, one with the `loginHandler` and one with the `passwordCheckHandler` api function. You can name them anything, as long as you pass the names to `loginApiPath` and `checkApiPath` respectively, in the next step. By default it expects `/login` and `/passwordCheck`.
+Add two api routes, one with the `loginHandler` and one with the `passwordCheckHandler` api function. You can name them anything, as long as you pass the names to `loginApiUrl` and `checkApiUrl` respectively, in the next step. By default it expects `/login` and `/passwordCheck`.
 
 ```javascript
 import { loginHandler } from "@storyofams/next-password-protect";
@@ -94,13 +94,12 @@ import { withPasswordProtect } from "@storyofams/next-password-protect";
 export default process.env.PASSWORD_PROTECT
   ? withPasswordProtect(App, {
     // Options go here (optional)
-    loginApiPath: "/login",
-    cookieName: "next-password-protect",
+    loginApiUrl: "/login",
   })
   : App;
 ```
 
-**Note**: make sure to specify `loginApiPath` and/or `loginApiPath` if the api route(s) are not default.
+**Note**: make sure to specify `loginApiUrl` and/or `checkApiUrl` if the api route(s) are not default.
 
 ## API
 
@@ -132,7 +131,6 @@ The options object can contain any of the following options:
 
 Option | Description | Default value
 ------ | ----------- | -------------
-`cookieName`| The name of the authorization cookie | `'next-password-protect'`
 `checkApiUrl`| Relative path of the api route handled by `passwordCheckHandler` | `'/api/passwordCheck'`
 `loginApiUrl`| Relative path of the api route handled by `loginHandler` | `'/api/login'`
 `loginComponent`| Supply your own React component to show as login prompt | `LoginComponent`
