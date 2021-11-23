@@ -19,7 +19,7 @@
     "@styled-system/css": "^5.1.4",
     "@styled-system/props": "^5.1.4",
     "@svgr/webpack": "^5.0.1",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "fontfaceobserver": "^2.1.0",
     "next": "12.x.x",
     "next-seo": "^3.3.0",
