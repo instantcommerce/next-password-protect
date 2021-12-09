@@ -3,6 +3,16 @@
   "description": "Password protect your Next.js deployments.",
   "version": "0.0.0-development",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/src/index.js",
+      "default": "./dist/cjs/src/index.js"
+    },
+    "./middleware": {
+      "import": "./dist/esm/src/middleware/index.js",
+      "default": "./dist/cjs/src/middleware/index.js"
+    }
+  },
   "main": "dist/cjs/src/index.js",
   "module": "dist/esm/src/index.js",
   "jsnext:main": "dist/esm/src/index.js",

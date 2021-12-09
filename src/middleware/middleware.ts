@@ -1,11 +1,10 @@
-import { createElement, ElementType } from 'react';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { renderToString } from 'react-dom/server';
 
 import { PasswordCheckOptions, PasswordChecker } from '../api';
-import { Login as DefaultLoginComponent, LoginProps } from '../components';
 import { DEFAULT_COOKIE_NAME } from '../constants';
+
+import { html, HtmlOptions } from './html';
 
 interface MiddlewareOptions extends PasswordCheckOptions {
   enabled?: boolean;
@@ -13,8 +12,7 @@ interface MiddlewareOptions extends PasswordCheckOptions {
   checkApiUrl?: string;
   /* @default /api/login */
   loginApiUrl?: string;
-  loginComponent?: ElementType;
-  loginComponentProps?: Omit<LoginProps, 'apiUrl'>;
+  loginHtmlOptions?: Omit<HtmlOptions, 'apiUrl'>;
 }
 
 export const passwordProtectMiddleware = (
@@ -30,6 +28,10 @@ export const passwordProtectMiddleware = (
   const passwordChecker = new PasswordChecker(password, { cookieName });
 
   return (req: NextRequest) => {
+    if (req.nextUrl.pathname === (options?.loginApiUrl || '/api/login')) {
+      return NextResponse.next();
+    }
+
     let isAuthenticated = false;
 
     try {
@@ -42,16 +44,11 @@ export const passwordProtectMiddleware = (
       return NextResponse.next();
     }
 
-    const LoginComponent: ElementType =
-      options?.loginComponent || DefaultLoginComponent;
-
     return new Response(
-      `<html><head></head><body>${renderToString(
-        createElement(LoginComponent, {
-          apiUrl: options?.loginApiUrl,
-          ...(options?.loginComponentProps || {}),
-        }),
-      )}</body></html>`,
+      html({
+        apiUrl: options?.loginApiUrl,
+        ...(options?.loginHtmlOptions || {}),
+      }),
       {
         headers: {
           'content-type': 'text/html',

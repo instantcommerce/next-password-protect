@@ -1,6 +1,6 @@
 const getError = ({ res, err }) => {
   let statusCode = 404;
-
+  console.log(err);
   if (res) {
     statusCode = res?.statusCode || err?.statusCode || 500;
   }

@@ -25,7 +25,6 @@ module.exports = {
 
     config.resolve.alias = {
       ...config.resolve.alias,
-      next: path.resolve('./node_modules/next'),
       react: path.resolve('./node_modules/react'),
       'react-dom': path.resolve('./node_modules/react-dom'),
     };

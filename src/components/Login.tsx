@@ -54,7 +54,7 @@ export const Login = ({
         setBusy(false);
       }
     } catch (e) {
-      setError('An error has occured.');
+      setError('An error has occurred.');
       setBusy(false);
     }
 
