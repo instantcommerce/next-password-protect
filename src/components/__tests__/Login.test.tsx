@@ -85,7 +85,7 @@ describe('[hoc] Login', () => {
     );
 
     expect(screen.getByTestId('error')).toHaveTextContent(
-      'An error has occured.',
+      'An error has occurred.',
     );
   });
 
