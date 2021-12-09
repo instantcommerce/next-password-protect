@@ -4,11 +4,11 @@
     "node_modules",
     "build",
     "dist",
-    "example",
+    "examples",
     "rollup.config.js",
     "**/lib/test-utils.ts",
     "**/__mocks__/*",
     "**/*.test.ts",
-    "**/*.test.tsx",
-  ],
+    "**/*.test.tsx"
+  ]
 }

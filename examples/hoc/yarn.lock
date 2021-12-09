@@ -2154,12 +2154,9 @@
     telejson "^3.2.0"
     util-deprecate "^1.0.2"
 
-"@storyofams/next-password-protect@link:..":
-  version "0.0.0-development"
-  dependencies:
-    cookie "^0.4.1"
-    jsonwebtoken "^8.5.1"
-    safe-compare "^1.1.4"
+"@storyofams/next-password-protect@link:../..":
+  version "0.0.0"
+  uid ""
 
 "@storyofams/react-helpers@0.3.6":
   version "0.3.6"

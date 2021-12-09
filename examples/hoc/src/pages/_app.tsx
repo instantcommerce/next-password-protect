@@ -8,7 +8,7 @@ import { seo } from '~/config';
 import theme from '~/styles/theme';
 
 import '../../public/static/fonts/stylesheet.css';
-import { withPasswordProtect } from '../../../src';
+import { withPasswordProtect } from '../../../../src';
 
 class MyApp extends App {
   componentDidMount() {

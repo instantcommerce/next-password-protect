@@ -12,7 +12,7 @@ import ttypescript from 'ttypescript';
 const extensions = ['.tsx', '.ts'];
 
 export default {
-  external: ['react', 'react-dom'],
+  external: ['next', 'react', 'react-dom'],
   input: ['./src/index.ts'],
   output: [
     {

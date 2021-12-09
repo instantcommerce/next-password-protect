@@ -31,7 +31,7 @@
     "src/lib/test-utils.tsx",
     "build",
     "dist",
-    "example",
+    "examples",
     "rollup.config.js"
   ],
   "include": ["**/*.ts", "**/*.tsx"]
