@@ -19,7 +19,7 @@ export const passwordProtectMiddleware = (
   password: string,
   { cookieName, enabled, ...options }: MiddlewareOptions = {},
 ) => {
-  if (!enabled) {
+  if (enabled === false) {
     return () => {
       return NextResponse.next();
     };

@@ -47,7 +47,7 @@ export class PasswordChecker {
         return false;
       }
 
-      throw new Error(err?.message || 'An error has occured.');
+      throw new Error(err?.message || 'An error has occurred.');
     }
   }
 }

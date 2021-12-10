@@ -14,7 +14,7 @@ export const html = ({
   buttonBackgroundColor,
   buttonColor,
   logo,
-}: HtmlOptions) => {
+}: HtmlOptions = {}) => {
   const image =
     !!logo &&
     `<img

@@ -31,7 +31,7 @@ export const passwordCheckHandler = (
 
       sendJson(res, 401);
     } catch (err) {
-      sendJson(res, 500, { message: err?.message || 'An error has occured.' });
+      sendJson(res, 500, { message: err?.message || 'An error has occurred.' });
     }
   };
 };
