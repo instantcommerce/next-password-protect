@@ -73,6 +73,25 @@ describe('[api] loginHandler', () => {
     jest.restoreAllMocks();
   });
 
+  it('should set the domain if configured', async () => {
+    const { req, res } = createMocks(
+      { method: 'POST', body: { password: 'password' } },
+      { eventEmitter: EventEmitter },
+    );
+
+    const domain = 'storyofams.com';
+    await loginHandler('password', { domain })(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getHeaders()).toMatchObject({
+      'set-cookie': expect.stringMatching(
+        new RegExp(
+          `^next-password-protect=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\\..+\\..+; Domain=${domain}; Path=\\/; HttpOnly$`,
+        ),
+      ),
+    });
+  });
+
   it('should reject on incorrect password', async () => {
     const { req, res } = createMocks(
       { method: 'POST', body: { password: 'incorrect' } },
