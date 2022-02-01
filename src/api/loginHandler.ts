@@ -11,6 +11,7 @@ interface PasswordProtectHandlerOptions {
   cookieName?: string;
   cookieSameSite?: boolean | 'lax' | 'none' | 'strict';
   cookieSecure?: boolean;
+  domain?: string;
 }
 
 export const loginHandler = (
@@ -40,6 +41,7 @@ export const loginHandler = (
          */
         jwt.sign({}, password),
         {
+          domain: options?.domain,
           httpOnly: true,
           sameSite: options?.cookieSameSite || false,
           secure:
