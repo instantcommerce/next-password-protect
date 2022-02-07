@@ -2,10 +2,7 @@ import React, { ElementType, useEffect, useState } from 'react';
 import { useAmp } from 'next/amp';
 import type { AppProps } from 'next/app';
 
-import {
-  LoginComponent as DefaultLoginComponent,
-  LoginComponentProps,
-} from './LoginComponent';
+import { Login as DefaultLoginComponent, LoginProps } from '../components';
 
 interface PasswordProtectHOCOptions {
   /* @default /api/passwordCheck */
@@ -13,7 +10,7 @@ interface PasswordProtectHOCOptions {
   /* @default /api/login */
   loginApiUrl?: string;
   loginComponent?: ElementType;
-  loginComponentProps?: Omit<LoginComponentProps, 'apiUrl'>;
+  loginComponentProps?: Omit<LoginProps, 'apiUrl'>;
 }
 
 /// TODO: improve App typing

@@ -27,6 +27,7 @@
 ## How it works
 
 This library adds a password prompt to your Next.js deployment. It consists of two main parts:
+
 1. Two serverless API routes:
    - A login route that checks if a password is correct and sets a cookie with a JWT in case it is.
    - A check route that validates if you have the authorization cookie with a valid JWT.
@@ -93,9 +94,9 @@ import { withPasswordProtect } from "@storyofams/next-password-protect";
 // Before: export default App;
 export default process.env.PASSWORD_PROTECT
   ? withPasswordProtect(App, {
-    // Options go here (optional)
-    loginApiUrl: "/login",
-  })
+      // Options go here (optional)
+      loginApiUrl: "/login",
+    })
   : App;
 ```
 
@@ -104,53 +105,54 @@ export default process.env.PASSWORD_PROTECT
 ## API
 
 ### API routes handlers
-```loginHandler(password: string, options)```
+
+`loginHandler(password: string, options)`
 
 The options object can contain any of the following options:
 
-Option | Description | Default value
------- | ----------- | -------------
-`cookieMaxAge`| Cookie Max-Age attribute | `undefined`
-`cookieName`| The name of the authorization cookie | `'next-password-protect'`
-`cookieSameSite`| SameSite cookie attribute | `false`
-`cookieSecure`| Secure flag on the cookie | `process.env.NODE_ENV === 'production'`
+| Option           | Description                          | Default value                           |
+| ---------------- | ------------------------------------ | --------------------------------------- |
+| `cookieMaxAge`   | Cookie Max-Age attribute             | `undefined`                             |
+| `cookieName`     | The name of the authorization cookie | `'next-password-protect'`               |
+| `cookieSameSite` | SameSite cookie attribute            | `false`                                 |
+| `cookieSecure`   | Secure flag on the cookie            | `process.env.NODE_ENV === 'production'` |
 
-```passwordCheckHandler(password: string, options)```
+`passwordCheckHandler(password: string, options)`
 
 The options object can contain any of the following options:
 
-Option | Description | Default value
------- | ----------- | -------------
-`cookieName`| The name of the authorization cookie | `'next-password-protect'`
-
+| Option       | Description                          | Default value             |
+| ------------ | ------------------------------------ | ------------------------- |
+| `cookieName` | The name of the authorization cookie | `'next-password-protect'` |
 
 ### Next App HOC
-```withPasswordProtect(App: NextApp, options)```
+
+`withPasswordProtect(App: NextApp, options)`
 
 The options object can contain any of the following options:
 
-Option | Description | Default value
------- | ----------- | -------------
-`checkApiUrl`| Relative path of the api route handled by `passwordCheckHandler` | `'/api/passwordCheck'`
-`loginApiUrl`| Relative path of the api route handled by `loginHandler` | `'/api/login'`
-`loginComponent`| Supply your own React component to show as login prompt | `LoginComponent`
-`loginComponentProps`| Properties object to customize the login prompt, without overriding the entire component (see below) | `{}`
+| Option                | Description                                                                                          | Default value          |
+| --------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------- |
+| `checkApiUrl`         | Relative path of the api route handled by `passwordCheckHandler`                                     | `'/api/passwordCheck'` |
+| `loginApiUrl`         | Relative path of the api route handled by `loginHandler`                                             | `'/api/login'`         |
+| `loginComponent`      | Supply your own React component to show as login prompt                                              | `LoginComponent`       |
+| `loginComponentProps` | Properties object to customize the login prompt, without overriding the entire component (see below) | `{}`                   |
 
 The `loginComponentProps` object can contain any of the following options:
 
-Option | Description | Default value
------- | ----------- | -------------
-`backUrl`| Show a link with this URL to go back to main website | `undefined`
-`buttonBackgroundColor`| Login button background color | `'#01EDBC'`
-`buttonColor`| Login button color | `'#111'`
-`logo` | Show a logo above the prompt (img src) | `undefined`
+| Option                  | Description                                          | Default value |
+| ----------------------- | ---------------------------------------------------- | ------------- |
+| `backUrl`               | Show a link with this URL to go back to main website | `undefined`   |
+| `buttonBackgroundColor` | Login button background color                        | `'#01EDBC'`   |
+| `buttonColor`           | Login button color                                   | `'#111'`      |
+| `logo`                  | Show a logo above the prompt (img src)               | `undefined`   |
 
 ## Advanced
 
 ### Custom login component
 
 To change the default login component, a React component can be supplied to the `withPasswordProtect` HOC. In order for the library to function properly, make sure your login component has password input that is validated by the the api route.
-You can use `src/hoc/LoginComponent.tsx` as a starting point.
+You can use `src/components/Login.tsx` as a starting point.
 
 ## Caveats
 

@@ -4,8 +4,9 @@ export default {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   transform: {
-    '^.+\\.tsx?$': 'babel-jest',
+    '^.+\\.(t|j)sx?$': 'babel-jest',
   },
+  transformIgnorePatterns: ['node_modules/(?!next)'],
   moduleNameMapper: {
     '^~(.*)$': '<rootDir>/src/$1',
     '^~test-utils(.*)$': '<rootDir>/src/lib/test-utils$1',

@@ -76,6 +76,7 @@ describe('[api] passwordCheckHandler', () => {
     await passwordCheckHandler('password')(req as any, res as any);
 
     expect(res._getStatusCode()).toBe(500);
+    expect(res._getData()).toBe(JSON.stringify({ message: 'Invalid method.' }));
 
     jest.restoreAllMocks();
   });
@@ -102,7 +103,7 @@ describe('[api] passwordCheckHandler', () => {
 
     expect(res._getStatusCode()).toBe(500);
     expect(res._getData()).toBe(
-      JSON.stringify({ message: 'An error has occured.' }),
+      JSON.stringify({ message: 'An error has occurred.' }),
     );
 
     jest.restoreAllMocks();

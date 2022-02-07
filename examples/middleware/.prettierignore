@@ -1,0 +1,7 @@
+node_modules/*
+public/*
+.next
+.next/*
+dist 
+coverage
+storybook-static/*

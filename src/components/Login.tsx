@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export interface LoginComponentProps {
+export interface LoginProps {
   apiUrl?: string;
   backUrl?: string;
   /* @default #01EDBC */
@@ -10,13 +10,13 @@ export interface LoginComponentProps {
   logo?: string;
 }
 
-export const LoginComponent = ({
+export const Login = ({
   apiUrl,
   backUrl,
   buttonBackgroundColor,
   buttonColor,
   logo,
-}: LoginComponentProps) => {
+}: LoginProps) => {
   const [isBusy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -54,7 +54,7 @@ export const LoginComponent = ({
         setBusy(false);
       }
     } catch (e) {
-      setError('An error has occured.');
+      setError('An error has occurred.');
       setBusy(false);
     }
 
@@ -261,7 +261,7 @@ export const LoginComponent = ({
         </div>
         {!!backUrl && (
           <a href={backUrl} className="link">
-            ← Back to main website
+            &#8592; Back to main website
           </a>
         )}
       </div>

@@ -11,11 +11,11 @@ import userEvent from '@testing-library/user-event';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 
-import { LoginComponent } from '../LoginComponent';
+import { Login } from '../Login';
 
 const server = setupServer();
 
-describe('[hoc] LoginComponent', () => {
+describe('[hoc] Login', () => {
   beforeAll(() => server.listen());
   afterEach(() => {
     server.resetHandlers();
@@ -35,7 +35,7 @@ describe('[hoc] LoginComponent', () => {
     delete window.location;
     window.location = { ...window.location, reload: reloadMock };
 
-    render(<LoginComponent apiUrl="http://localhost/api/login" />);
+    render(<Login apiUrl="http://localhost/api/login" />);
 
     act(() => {
       userEvent.click(screen.getByRole('button'));
@@ -54,7 +54,7 @@ describe('[hoc] LoginComponent', () => {
       }),
     );
 
-    render(<LoginComponent apiUrl="http://localhost/api/login" />);
+    render(<Login apiUrl="http://localhost/api/login" />);
 
     act(() => {
       userEvent.click(screen.getByRole('button'));
@@ -74,7 +74,7 @@ describe('[hoc] LoginComponent', () => {
       }),
     );
 
-    render(<LoginComponent />);
+    render(<Login />);
 
     act(() => {
       userEvent.click(screen.getByRole('button'));
@@ -85,7 +85,7 @@ describe('[hoc] LoginComponent', () => {
     );
 
     expect(screen.getByTestId('error')).toHaveTextContent(
-      'An error has occured.',
+      'An error has occurred.',
     );
   });
 
@@ -99,7 +99,7 @@ describe('[hoc] LoginComponent', () => {
     const fetchMock = jest.fn(() => new Promise(() => {}));
     jest.spyOn(global, 'fetch').mockImplementation(fetchMock as any);
 
-    render(<LoginComponent apiUrl="http://localhost/api/login" />);
+    render(<Login apiUrl="http://localhost/api/login" />);
 
     await act(async () => {
       await fireEvent.submit(screen.getByTestId('form'));
@@ -113,7 +113,7 @@ describe('[hoc] LoginComponent', () => {
 
   it('should show logo if set', async () => {
     act(() => {
-      render(<LoginComponent logo="/image-src" />);
+      render(<Login logo="/image-src" />);
     });
 
     expect(screen.getByAltText('Logo')).toHaveAttribute('src', '/image-src');
@@ -121,7 +121,7 @@ describe('[hoc] LoginComponent', () => {
 
   it('should show back link if set', async () => {
     act(() => {
-      render(<LoginComponent logo="/image-src" backUrl="https://google.com" />);
+      render(<Login logo="/image-src" backUrl="https://google.com" />);
     });
 
     expect(screen.getByText('← Back to main website')).toHaveAttribute(

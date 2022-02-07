@@ -3,6 +3,16 @@
   "description": "Password protect your Next.js deployments.",
   "version": "0.0.0-development",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/src/index.js",
+      "default": "./dist/cjs/src/index.js"
+    },
+    "./middleware": {
+      "import": "./dist/esm/src/middleware/index.js",
+      "default": "./dist/cjs/src/middleware/index.js"
+    }
+  },
   "main": "dist/cjs/src/index.js",
   "module": "dist/esm/src/index.js",
   "jsnext:main": "dist/esm/src/index.js",
@@ -42,6 +52,7 @@
     "@babel/cli": "7.12.13",
     "@babel/core": "7.12.13",
     "@babel/plugin-proposal-class-properties": "7.12.13",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "@babel/plugin-transform-runtime": "7.12.15",
     "@babel/preset-env": "7.12.13",
     "@babel/preset-react": "7.12.13",
@@ -86,6 +97,7 @@
     "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "events": "^3.3.0",
+    "html-validate": "^6.1.4",
     "husky": "4.3.8",
     "isomorphic-fetch": "^3.0.0",
     "jest": "26.6.3",
@@ -93,7 +105,7 @@
     "jest-styled-components": "^7.0.3",
     "lint-staged": "10.5.3",
     "msw": "^0.27.1",
-    "next": "11.1.1",
+    "next": "12.0.7",
     "node-mocks-http": "^1.10.1",
     "prettier": "2.2.1",
     "react": "17.0.1",
