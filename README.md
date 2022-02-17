@@ -135,6 +135,7 @@ Option | Description | Default value
 `loginApiUrl`| Relative path of the api route handled by `loginHandler` | `'/api/login'`
 `loginComponent`| Supply your own React component to show as login prompt | `LoginComponent`
 `loginComponentProps`| Properties object to customize the login prompt, without overriding the entire component (see below) | `{}`
+`bypassProtectionForRoute`| Bypass protection for specific routes, decided by callback with `NextRouter` param | `({ route }) => false`
 
 The `loginComponentProps` object can contain any of the following options:
 

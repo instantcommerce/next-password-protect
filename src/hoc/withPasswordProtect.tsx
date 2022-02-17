@@ -2,7 +2,7 @@ import React, { ElementType, useEffect, useState } from 'react';
 import { useAmp } from 'next/amp';
 import type { AppProps } from 'next/app';
 
-import { NextRouter, useRouter } from 'next/dist/client/router';
+import { NextRouter, useRouter } from 'next/router';
 import {
   LoginComponent as DefaultLoginComponent,
   LoginComponentProps,
