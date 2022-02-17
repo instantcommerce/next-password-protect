@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/jws/lib/data-stream.js");exports.default=e.default;
+//# sourceMappingURL=data-stream.js_commonjs-proxy.map

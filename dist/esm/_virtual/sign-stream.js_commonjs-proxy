@@ -1,0 +1,2 @@
+import s from"../node_modules/jws/lib/sign-stream.js";export{default}from"../node_modules/jws/lib/sign-stream.js";
+//# sourceMappingURL=sign-stream.js_commonjs-proxy.map

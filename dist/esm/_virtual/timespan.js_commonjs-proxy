@@ -1,0 +1,2 @@
+import e from"../node_modules/jsonwebtoken/lib/timespan.js";export{default}from"../node_modules/jsonwebtoken/lib/timespan.js";
+//# sourceMappingURL=timespan.js_commonjs-proxy.map

@@ -1,0 +1,2 @@
+import o from"../node_modules/jsonwebtoken/lib/TokenExpiredError.js";export{default}from"../node_modules/jsonwebtoken/lib/TokenExpiredError.js";
+//# sourceMappingURL=TokenExpiredError.js_commonjs-proxy.map

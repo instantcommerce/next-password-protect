@@ -1,0 +1,1 @@
+{"version":3,"file":"sendJson.js","sources":["../../../../src/api/sendJson.ts"],"sourcesContent":["import { Response } from 'express';\n\nexport const sendJson = (res: Response, status: number, data: any = {}) => {\n  res.status(status).json(data);\n};\n"],"names":["res","status","data","json"],"mappings":"qFAEwB,SAACA,EAAeC,EAAgBC,gBAAAA,MACtDF,EAAIC,OAAOA,GAAQE,KAAKD"}

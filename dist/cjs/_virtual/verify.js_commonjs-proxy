@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/jsonwebtoken/verify.js");exports.default=e.default;
+//# sourceMappingURL=verify.js_commonjs-proxy.map

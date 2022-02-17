@@ -1,0 +1,2 @@
+import o from"../node_modules/jsonwebtoken/sign.js";export{default}from"../node_modules/jsonwebtoken/sign.js";
+//# sourceMappingURL=sign.js_commonjs-proxy.map

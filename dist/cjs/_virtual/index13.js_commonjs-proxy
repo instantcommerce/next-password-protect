@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/safe-buffer/index.js");exports.default=e.default;
+//# sourceMappingURL=index13.js_commonjs-proxy.map

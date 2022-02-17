@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/ecdsa-sig-formatter/src/param-bytes-for-alg.js");exports.default=e.default;
+//# sourceMappingURL=param-bytes-for-alg.js_commonjs-proxy.map

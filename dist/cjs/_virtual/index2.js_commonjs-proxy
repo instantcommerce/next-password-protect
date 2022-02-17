@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/jws/index.js");exports.default=e.default;
+//# sourceMappingURL=index2.js_commonjs-proxy.map

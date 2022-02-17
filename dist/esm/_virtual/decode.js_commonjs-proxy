@@ -1,0 +1,2 @@
+import e from"../node_modules/jsonwebtoken/decode.js";export{default}from"../node_modules/jsonwebtoken/decode.js";
+//# sourceMappingURL=decode.js_commonjs-proxy.map

@@ -1,0 +1,2 @@
+import o from"../node_modules/jsonwebtoken/lib/JsonWebTokenError.js";export{default}from"../node_modules/jsonwebtoken/lib/JsonWebTokenError.js";
+//# sourceMappingURL=JsonWebTokenError.js_commonjs-proxy.map
