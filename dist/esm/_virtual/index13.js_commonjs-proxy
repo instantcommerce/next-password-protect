@@ -1,2 +1,2 @@
-import e from"../node_modules/safe-buffer/index.js";export{default}from"../node_modules/safe-buffer/index.js";
+import e from"../node_modules/jwa/index.js";export{default}from"../node_modules/jwa/index.js";
 //# sourceMappingURL=index13.js_commonjs-proxy.map

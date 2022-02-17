@@ -1,2 +1,2 @@
-import d from"../node_modules/lodash.includes/index.js";export{default}from"../node_modules/lodash.includes/index.js";
+import o from"../node_modules/lodash.isboolean/index.js";export{default}from"../node_modules/lodash.isboolean/index.js";
 //# sourceMappingURL=index3.js_commonjs-proxy.map
