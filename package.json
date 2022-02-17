@@ -1,7 +1,7 @@
 {
   "name": "@storyofams/next-password-protect",
   "description": "Password protect your Next.js deployments.",
-  "version": "1.6.1",
+  "version": "0.0.0-development",
   "license": "MIT",
   "main": "dist/cjs/src/index.js",
   "module": "dist/esm/src/index.js",
