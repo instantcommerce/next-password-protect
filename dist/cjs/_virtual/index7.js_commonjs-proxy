@@ -1,2 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/lodash.isplainobject/index.js");exports.default=e.default;
-//# sourceMappingURL=index7.js_commonjs-proxy.map

@@ -1,2 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/jsonwebtoken/lib/NotBeforeError.js");exports.default=e.default;
-//# sourceMappingURL=NotBeforeError.js_commonjs-proxy.map

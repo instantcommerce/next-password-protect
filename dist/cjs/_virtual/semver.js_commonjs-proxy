@@ -1,2 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("../node_modules/semver/semver.js");exports.default=e.default;
-//# sourceMappingURL=semver.js_commonjs-proxy.map
