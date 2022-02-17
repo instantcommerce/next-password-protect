@@ -15,7 +15,7 @@ interface PasswordProtectHOCOptions {
   loginApiUrl?: string;
   loginComponent?: ElementType;
   loginComponentProps?: Omit<LoginComponentProps, 'apiUrl'>;
-  bypassProtectionForRoute?: (route: NextRouter) => boolean;
+  bypassProtection?: (route: NextRouter) => boolean;
 }
 
 /// TODO: improve App typing
@@ -54,8 +54,7 @@ export const withPasswordProtect = (
       return null;
     }
 
-    const bypassProtection =
-      options?.bypassProtectionForRoute?.(router) ?? false;
+    const bypassProtection = options?.bypassProtection?.(router) ?? false;
     if (isAuthenticated || bypassProtection) {
       return <App Component={Component} pageProps={pageProps} {...props} />;
     }

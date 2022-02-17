@@ -154,7 +154,7 @@ describe('[hoc] withPasswordProtect', () => {
 
   it('should be able to bypass protection for specified routes', async () => {
     const Wrapped = withPasswordProtect(App, {
-      bypassProtectionForRoute: ({ route }) => route === '/bypassed',
+      bypassProtection: ({ route }) => route === '/bypassed',
     });
 
     // ORDINARY PAGE
