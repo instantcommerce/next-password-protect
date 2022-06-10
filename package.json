@@ -108,7 +108,7 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript2": "0.29.0",
-    "semantic-release": "17.3.3",
+    "semantic-release": "19.0.3",
     "ts-jest": "26.4.4",
     "ts-loader": "8.0.16",
     "ts-node": "^9.1.1",
