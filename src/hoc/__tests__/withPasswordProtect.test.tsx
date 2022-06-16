@@ -4,6 +4,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import * as hooks from 'next/amp';
 
+import * as nextRouter from 'next/router';
 import { withPasswordProtect } from '../withPasswordProtect';
 
 const App = ({ Component }) => <Component />;
@@ -148,6 +149,54 @@ describe('[hoc] withPasswordProtect', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Password')).toBeInTheDocument();
+    });
+  });
+
+  it('should be able to bypass protection for specified routes', async () => {
+    const Wrapped = withPasswordProtect(App, {
+      bypassProtection: ({ route }) => route === '/bypassed',
+    });
+
+    // ORDINARY PAGE
+    jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
+      route: '/',
+    }));
+
+    await act(async () => {
+      render(
+        <Wrapped
+          Component={() => <div>hidden</div>}
+          pageProps={{}}
+          router={
+            {
+              route: '/bypassed',
+            } as nextRouter.Router
+          }
+        />,
+      );
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Password')).toBeInTheDocument();
+    });
+
+    // BYPASSED PAGE
+    jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => ({
+      route: '/bypassed',
+    }));
+
+    await act(async () => {
+      render(
+        <Wrapped
+          Component={() => <div>hidden</div>}
+          pageProps={{}}
+          router={{} as any}
+        />,
+      );
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('hidden')).toBeInTheDocument();
     });
   });
 });

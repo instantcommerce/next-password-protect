@@ -2,6 +2,7 @@ import React, { ElementType, useEffect, useState } from 'react';
 import { useAmp } from 'next/amp';
 import type { AppProps } from 'next/app';
 
+import { NextRouter, useRouter } from 'next/router';
 import {
   LoginComponent as DefaultLoginComponent,
   LoginComponentProps,
@@ -14,6 +15,7 @@ interface PasswordProtectHOCOptions {
   loginApiUrl?: string;
   loginComponent?: ElementType;
   loginComponentProps?: Omit<LoginComponentProps, 'apiUrl'>;
+  bypassProtection?: (route: NextRouter) => boolean;
 }
 
 /// TODO: improve App typing
@@ -26,6 +28,7 @@ export const withPasswordProtect = (
     const [isAuthenticated, setAuthenticated] = useState<undefined | boolean>(
       undefined,
     );
+    const router = useRouter();
 
     const checkIfLoggedIn = async () => {
       try {
@@ -51,7 +54,8 @@ export const withPasswordProtect = (
       return null;
     }
 
-    if (isAuthenticated) {
+    const bypassProtection = options?.bypassProtection?.(router) ?? false;
+    if (isAuthenticated || bypassProtection) {
       return <App Component={Component} pageProps={pageProps} {...props} />;
     }
 
