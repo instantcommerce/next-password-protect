@@ -1,5 +1,5 @@
 {
-  "name": "@storyofams/next-password-protect",
+  "name": "next-password-protect",
   "description": "Password protect your Next.js deployments.",
   "version": "0.0.0-development",
   "license": "MIT",
@@ -140,6 +140,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/storyofams/next-password-protect.git"
+    "url": "https://github.com/instantcommerce/next-password-protect.git"
   }
 }

@@ -15,7 +15,7 @@
   "dependencies": {
     "@reach/alert": "^0.7.4",
     "@storyofams/react-helpers": "0.3.6",
-    "@storyofams/next-password-protect": "link:..",
+    "next-password-protect": "link:..",
     "@styled-system/css": "^5.1.4",
     "@styled-system/props": "^5.1.4",
     "@svgr/webpack": "^5.0.1",

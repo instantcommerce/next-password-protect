@@ -2154,13 +2154,6 @@
     telejson "^3.2.0"
     util-deprecate "^1.0.2"
 
-"@storyofams/next-password-protect@link:..":
-  version "0.0.0-development"
-  dependencies:
-    cookie "^0.4.1"
-    jsonwebtoken "^8.5.1"
-    safe-compare "^1.1.4"
-
 "@storyofams/react-helpers@0.3.6":
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/@storyofams/react-helpers/-/react-helpers-0.3.6.tgz#d53cb9ca5e52195168f689571a56427b286db38f"
@@ -9628,6 +9621,10 @@ neo-async@^2.5.0, neo-async@^2.6.1:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+"next-password-protect@link:..":
+  version "0.0.0"
+  uid ""
 
 next-seo@^3.3.0:
   version "3.4.0"

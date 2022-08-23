@@ -79,7 +79,7 @@ describe('[api] loginHandler', () => {
       { eventEmitter: EventEmitter },
     );
 
-    const domain = 'storyofams.com';
+    const domain = 'instantcommerce.io';
     await loginHandler('password', { domain })(req, res);
 
     expect(res._getStatusCode()).toBe(200);
