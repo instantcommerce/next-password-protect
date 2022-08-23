@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export interface LoginComponentProps {
   apiUrl?: string;
   backUrl?: string;
-  /* @default #01EDBC */
+  /* @default #FBCC26 */
   buttonBackgroundColor?: string;
   /* @default #111 */
   buttonColor?: string;
@@ -244,7 +244,7 @@ export const LoginComponent = ({
               disabled={isBusy}
               style={{
                 appearance: 'none',
-                background: buttonBackgroundColor || '#01EDBC',
+                background: buttonBackgroundColor || '#FBCC26',
                 borderRadius: '52px',
                 border: 'none',
                 padding: '12px 32px',
