@@ -100,14 +100,8 @@ export const LoginComponent = ({
         <style
           dangerouslySetInnerHTML={{
             __html: `
-            @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
-
-            @font-face {
-              font-family: 'Filson W01';
-              src: url('data:application/font-woff2;charset=utf-8;base64,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') format('woff2');
-              font-weight: 900;
-              font-style: normal;
-              font-display: swap;
+            html {
+              font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";
             }
 
             body {
@@ -119,7 +113,6 @@ export const LoginComponent = ({
             }
 
             .link {
-              font-family: 'Karla', sans-serif;
               font-style: normal;
               text-decoration: none;
               color: #666;
@@ -128,14 +121,6 @@ export const LoginComponent = ({
 
             .link:hover, .link:focus {
               color: #111;
-            }
-
-            #password-form * {
-              font-family: 'Karla', sans-serif;
-            }
-
-            #password-form h1 {
-              font-family: 'Filson W01', sans-serif;
             }
 
             #password-form {
