@@ -2,6 +2,9 @@ import type { Config } from '@jest/types';
 
 export default {
   testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    url: 'https://jestjs.io',
+  },
   roots: ['<rootDir>/src'],
   transform: {
     '^.+\\.tsx?$': 'babel-jest',
