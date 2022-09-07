@@ -1,5 +1,5 @@
 {
-  "name": "@storyofams/next-password-protect",
+  "name": "next-password-protect",
   "description": "Password protect your Next.js deployments.",
   "version": "0.0.0-development",
   "license": "MIT",
@@ -108,7 +108,7 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript2": "0.29.0",
-    "semantic-release": "17.3.3",
+    "semantic-release": "19.0.3",
     "ts-jest": "26.4.4",
     "ts-loader": "8.0.16",
     "ts-node": "^9.1.1",
@@ -140,6 +140,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/storyofams/next-password-protect.git"
+    "url": "https://github.com/instantcommerce/next-password-protect.git"
   }
 }

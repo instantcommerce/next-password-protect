@@ -1,20 +1,20 @@
 <p align="center">
-  <a aria-label="Story of AMS logo" href="https://storyofams.com/" target="_blank" align="center">
-    <img src="https://avatars.githubusercontent.com/u/19343504" alt="Story of AMS" width="100">
+  <a aria-label="Instant Commerce logo" href="https://instantcommerce.io/" target="_blank" align="center">
+    <img src="https://avatars.githubusercontent.com/u/93975473" alt="Instant Commerce" width="100">
   </a>
-  <h1 align="center">@storyofams/next-password-protect</h1>
+  <h1 align="center">next-password-protect</h1>
   <p align="center">
-    <a aria-label="releases" href="https://GitHub.com/storyofams/next-password-protect/releases/" target="_blank">
-      <img src="https://github.com/storyofams/next-password-protect/workflows/Release/badge.svg">
+    <a aria-label="releases" href="https://github.com/instantcommerce/next-password-protect/releases/" target="_blank">
+      <img src="https://github.com/instantcommerce/next-password-protect/workflows/Release/badge.svg">
     </a>
-    <a aria-label="npm" href="https://www.npmjs.com/package/@storyofams/next-password-protect" target="_blank">
-      <img src="https://img.shields.io/npm/v/@storyofams/next-password-protect">
+    <a aria-label="npm" href="https://www.npmjs.com/package/next-password-protect" target="_blank">
+      <img src="https://img.shields.io/npm/v/next-password-protect">
     </a>
-    <a aria-label="codecov" href="https://codecov.io/gh/storyofams/next-password-protect" target="_blank">
-      <img src="https://codecov.io/gh/storyofams/next-password-protect/branch/master/graph/badge.svg?token=ZV0YT4HU5H">
+    <a aria-label="codecov" href="https://codecov.io/gh/instantcommerce/next-password-protect" target="_blank">
+      <img src="https://codecov.io/gh/instantcommerce/next-password-protect/branch/master/graph/badge.svg?token=ZV0YT4HU5H">
     </a>
-    <a aria-label="stars" href="https://github.com/storyofams/next-password-protect/stargazers/" target="_blank">
-      <img src="https://img.shields.io/github/stars/storyofams/next-password-protect.svg?style=social&label=Star&maxAge=86400" />
+    <a aria-label="stars" href="https://github.com/instantcommerce/next-password-protect/stargazers/" target="_blank">
+      <img src="https://img.shields.io/github/stars/instantcommerce/next-password-protect.svg?style=social&label=Star&maxAge=86400" />
     </a>
   </p>
   <p align="center">Password protect your Next.js deployments. <a href="http://next-password-protect.vercel.app/" target="_blank">View demo</a> (Password is <b>secret</b>)</p>
@@ -39,9 +39,9 @@ This library adds a password prompt to your Next.js deployment. It consists of t
 ## Installation
 
 ```sh
-yarn add @storyofams/next-password-protect
+yarn add next-password-protect
 # or
-npm install @storyofams/next-password-protect
+npm install next-password-protect
 ```
 
 ## Usage
@@ -66,7 +66,7 @@ module.exports = {
 Add two api routes, one with the `loginHandler` and one with the `passwordCheckHandler` api function. You can name them anything, as long as you pass the names to `loginApiUrl` and `checkApiUrl` respectively, in the next step. By default it expects `/login` and `/passwordCheck`.
 
 ```javascript
-import { loginHandler } from "@storyofams/next-password-protect";
+import { loginHandler } from "next-password-protect";
 
 export default loginHandler("YOUR_SECRET_PASSWORD", {
   // Options go here (optional)
@@ -75,7 +75,7 @@ export default loginHandler("YOUR_SECRET_PASSWORD", {
 ```
 
 ```javascript
-import { passwordCheckHandler } from "@storyofams/next-password-protect";
+import { passwordCheckHandler } from "next-password-protect";
 
 export default passwordCheckHandler("YOUR_SECRET_PASSWORD", {
   // Options go here (optional)
@@ -88,7 +88,7 @@ export default passwordCheckHandler("YOUR_SECRET_PASSWORD", {
 Add the `withPasswordProtect` HOC to the default export of `App` in `pages/_app.tsx`:
 
 ```javascript
-import { withPasswordProtect } from "@storyofams/next-password-protect";
+import { withPasswordProtect } from "next-password-protect";
 
 // Before: export default App;
 export default process.env.PASSWORD_PROTECT
