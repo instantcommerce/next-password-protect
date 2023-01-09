@@ -1,4 +1,5 @@
 import React, { ElementType, useEffect, useState } from 'react';
+import { NextPageContext } from 'next';
 import { useAmp } from 'next/amp';
 import type { AppProps } from 'next/app';
 
@@ -73,6 +74,13 @@ export const withPasswordProtect = (
         {...(options?.loginComponentProps || {})}
       />
     );
+  };
+  ProtectedApp.getInitialProps = async (ctx: NextPageContext) => {
+    if (App.getInitialProps) {
+      return App.getInitialProps(ctx);
+    }
+
+    return {};
   };
 
   return ProtectedApp;
